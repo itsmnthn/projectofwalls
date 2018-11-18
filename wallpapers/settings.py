@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     # Wallpaper's Apps
     'walls.apps.WallsConfig',
     'accounts.apps.AccountsConfig',
-    'django_summernote',
+
 
     # Default Apps
     'django.contrib.admin',

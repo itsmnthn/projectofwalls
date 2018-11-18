@@ -94,7 +94,7 @@ Wallpaper
 
                 {% for tag in wallpaper.get_tags %}
                 <div class="chip chip-lg purple-gradient white-text">
-                    <a class="white-text" href="{% url 'tag' tag%}">{{ tag }}</a>
+                    <a class="white-text" href="{% url 'tags' tag %}">{{ tag }}</a>
                 </div>
                 {% endfor %}
                 {% endif %}

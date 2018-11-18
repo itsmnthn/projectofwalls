@@ -44,6 +44,6 @@ urlpatterns = [
 
     path('wallpaper/upload', views.wallpaper_upload, name='wallpaper_upload'),
 
-    path('tag/<str:tag>', views.tag, name='tag'),
+    path('tags/<str:tag>/', views.tag, name='tags'),
     path('search/', views.search, name='tag'),
 ]

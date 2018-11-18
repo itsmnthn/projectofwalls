@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
 
 from .models import Categories, Feedback, TeamMembers, Wallpapers
 
@@ -16,7 +15,7 @@ class WallpapersAdmin(admin.ModelAdmin):
                     'downloads', 'views', 'created_at', 'modified_at', 'active', ]
     list_filter = ('category', 'uploader', 'active', 'location',)
     exclude = ('slug', 'likes', 'views',)
-    summernote_fields = ('description',)
+   
     search_fields = ['title', 'category__title', 'description',
                      'uploader__username', 'tags', 'location', ]
 

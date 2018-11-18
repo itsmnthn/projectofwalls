@@ -34,6 +34,9 @@ class Categories(models.Model):
 
     def upload_to(self):
         return 'wallpaper_media/categories/'
+    
+    def get_name(self):
+        return self.title
 
 
 class Wallpapers(models.Model):
@@ -67,7 +70,13 @@ class Wallpapers(models.Model):
         return 'wallpaper_media/wallpapers/'
 
     def get_tags(self):
-        return [one.strip() for one in self.tags.split(',')]
+        if self.tags:
+            return [one.strip() for one in self.tags.split(',') if one.strip()]
+        else:
+            return ''
+    
+    def get_name(self):
+        return self.title
 
 
 def slug_save(sender, instance, *args, **kwargs):

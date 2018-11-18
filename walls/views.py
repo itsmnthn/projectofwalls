@@ -52,7 +52,11 @@ def register(request):
 
 def about(request):
     team = TeamMembers.objects.all()
-    return render(request, 'user/about.html', {'members':team,'totalmember':int(12/len(team))})
+    try:
+        totalteam = int(12/len(team))
+    except:
+        totalteam = 0
+    return render(request, 'user/about.html', {'members':team,'totalmember':totalteam})
 
 
 def contact_us(request):
