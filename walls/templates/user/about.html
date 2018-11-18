@@ -1,0 +1,114 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+About
+{% endblock title %}
+
+
+
+{% block main_content %}
+<!-- About us page Will have about peragraph with About as title and 
+second section will have Title Team Members and two one side photo and other side description
+-->
+<div class="container">
+    <!-- Section: Team v.1 -->
+    <section class="team-section text-center my-5">
+        <h2 class="h1-responsive font-weight-bold my-5">About</h2>
+
+        <p class="grey-text w-responsive mx-auto mb-5">
+            This website is a part of our study of MSc. IT & CA at Computer
+            Science Department of the Saurashtra University Rajkot.
+        </p>
+        <p class="grey-text w-responsive mx-auto mb-5">
+            This project is developed to learn more about technologies that
+            are used in it and the development procedure is nearly same as big companies. We went step by steps for
+            this project first we came up with the idea and we determines the requirements and a lots of rough work and
+            handmade designs after all look good we started development. Our team member Dhaval Purohit designed the
+            frontend and Manthankumar Satani designed the database and backend coding. This websites may have some
+            limitations and bugs due to less development time and basic knowledge of used technologies.
+        </p>
+
+        <p class="grey-text w-responsive mx-auto mb-5">
+            Technologies that are used in this development
+            <a href='https://github.com'>Github</a>,
+            <a href='https://python.org/'>Python 3.6</a>,
+            <a href='https://www.djangoproject.com/'>Django 2.06</a>,
+            <a href='https://en.wikipedia.org/wiki/HTML5'>HTML5</a>,
+            <a href='https://en.wikipedia.org/wiki/Cascading_Style_Sheets'>CSS3</a>,
+            <a href='https://mdbootstrap.com'>MDB</a>,
+            <a href='https://developer.mozilla.org/bm/docs/Web/JavaScript'>JS</a>
+            <a href='https://jquery.com/'>JQuery</a>
+        </p>
+
+        <p class="grey-text w-responsive mx-auto mb-5">
+            Git repository of project
+            <a href='https://github.com'>
+                <i class="fa fa-github"></i>
+                Wallpaper
+            </a>
+        </p>
+
+        <!-- Section heading -->
+        <h2 class="h1-responsive font-weight-bold my-5">The people who work for the project, share the vision and
+            values.</h2>
+        <!-- Section description -->
+        <p class="grey-text w-responsive mx-auto mb-5">
+            We’re driven by the idea that the best work is born from diligence, craftsmanship and fun.
+        </p>
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            {% for item in members %}
+            <div class="col-md-{{ totalmember }} mb-5">
+                <div class="avatar mx-auto">
+                    <img src="{{ item.image.url }}" class="rounded-circle z-depth-1" alt="Avatar">
+                </div>
+                <h5 class="font-weight-bold mt-4 mb-3">{{ item }}</h5>
+                <p class="text-uppercase blue-text"><strong>{{ item.position }}</strong></p>
+                <p class="grey-text">{{ item.description }}</p>
+
+                <ul class="list-unstyled mb-0">
+                    <!-- Email -->
+                    <a class="p-2 fa-lg ins-ic" href='mail:{{ item.email }}'>
+                        <i class="fa fa-envelope-o blue-text"> </i>
+                    </a>
+                    <!-- Phone -->
+                    <a class="p-2 fa-lg ins-ic" href='tel:{{ item.phone }}'>
+                        <i class="fa fa-phone blue-text"> </i>
+                    </a>
+                    <!-- Linkedin -->
+                    <a class="p-2 fa-lg ins-ic" href='{{ item.linkedin }}'>
+                        <i class="fa fa-linkedin blue-text"> </i>
+                    </a>
+                    <!-- Github -->
+                    <a class="p-2 fa-lg ins-ic" href='{{ item.github }}'>
+                        <i class="fa fa-github blue-text"> </i>
+                    </a>
+                    <!-- Facebook -->
+                    <a class="p-2 fa-lg fb-ic" href='{{ item.facebook }}'>
+                        <i class="fa fa-facebook blue-text"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="p-2 fa-lg tw-ic" href='{{ item.twitter }}'>
+                        <i class="fa fa-twitter blue-text"> </i>
+                    </a>
+                    <!-- Instagram -->
+                    <a class="p-2 fa-lg ins-ic" href='{{ item.instagram }}'>
+                        <i class="fa fa-instagram blue-text"> </i>
+                    </a>
+                </ul>
+            </div>
+            {% endfor %}
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </section>
+    <!-- Section: Team v.1 -->
+
+</div>
+{% endblock main_content %}

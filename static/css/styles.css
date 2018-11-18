@@ -1,0 +1,53 @@
+/* Custom style sheet for the website */
+* {
+    border-radius: 5px;  
+}
+.logg {
+ 	padding:10px;
+}
+.logg .panel{
+	border: 1px solid #424242;
+}
+.logg .form button{
+		float: left;
+		/*background-color: g;*/
+
+}
+.logg .reg{
+}
+.logg .panel input{
+	width: 100%;
+	padding: 10px;
+	border-top: none;
+	border-left: none;
+}
+
+.chip.chip-md {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
+.chip.chip-md img {
+    height: 42px;
+    width: 42px;
+}
+.chip.chip-md .close {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
+
+.chip.chip-lg {
+    height: 52px;
+    line-height: 52px;
+    border-radius: 26px;
+}
+.chip.chip-lg img {
+    height: 52px;
+    width: 52px;
+}
+.chip.chip-lg .close {
+    height: 52px;
+    line-height: 52px;
+    border-radius: 26px;
+}

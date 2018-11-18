@@ -1,0 +1,73 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+
+
+{% block main_content %}
+<!-- Login page will have email and password and login button in center and below
+Sign in button there is line not registered yet then click here! where here has link to register
+-->
+<div class="logg container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading col-md-12" style="background-color:#d3c7b8; padding: 10px;">
+                    <div class="col-md-6">
+                        <h2 class=""><span class="fa fa-unlock f1"> Login</span></h2>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 10px">
+
+                    <form class="form" method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {% if error %}
+                        <p class="text-center" style="color: crimson">{{ error }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="fa fa-user" for="username"> Email/Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="someone@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="fa fa-lock"> Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="********" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-block btn-default" class="form-control">Login</button>
+                            <div class="text-center">
+                                <p class="reg">Not a member?<a href=""> Register </a></p>
+                                {% comment %} <p class="text-center"> Forgot<a href="#"> password?</a></p> {% endcomment %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main_content %}
+
+<!--
+<div class="container ">
+    <div class="form text-center">
+        <div class="form-group md-form mt-20 pt-1 waves-light waves-effect waves-light">
+            <input type="text" class="form-control" placeholder="someone@example.com">
+        </div>
+        <div class="form-group md-form mt-0 pt-1 waves-light waves-effect waves-light">
+            <input type="text" class="form-control" placeholder="********">
+        </div>
+        <div class="form-group md-form mt-0 pt-1 waves-light waves-effect waves-light">
+            <input type="submit" value="Submit" class="form-control btn-default">
+        </div>
+        <div class="form-group md-form mt-0  waves-light waves-effect waves-light">
+            <span class='text-left'>Forgot <a href="{% url 'reset_password' %}">password</a>? </span>
+            <span>Haven't registered yet? click <a href="{% url 'reset_password' %}">here</a> to register.</span>
+        </div>
+    </div>
+</div>
+-->

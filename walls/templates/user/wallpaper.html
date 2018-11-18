@@ -1,0 +1,141 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Wallpaper
+{% endblock title %}
+
+
+
+{% block main_content %}
+<div class="container">
+    <form style="display: none;" id='download' method="POST" action="/download/">
+        {% csrf_token %}
+        <input type="hidden" name="download" value='1'>
+        <input type="hidden" name="slug" value='{{ wallpaper.slug }}'>
+    </form>
+    <form style="display: none;" id='like' method="POST" action="/like/">
+        {% csrf_token %}
+        <input type="hidden" name="like" value='1'>
+        <input type="hidden" name="slug" value='{{ wallpaper.slug }}'>
+    </form>
+    <section>
+        <!-- Row Title-->
+        <!-- <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>{{wallpaper.title}}</h2>
+            </div>
+        </div> -->
+        <!-- Row Title-->
+        <!-- Grid row -->
+        <!-- <div class="gallery" id="gallery"> -->
+        <!-- <div class="mb-4 pics animation"> -->
+        <!-- <img class="img-fluid" src="{{ wallpaper.image.url }}" alt="{{ item.title }}"> -->
+        <!-- </div> -->
+
+        <!-- <div class="mb-4 pics animation"> -->
+        <!-- <img class="img-fluid" src="{{ wallpaper.image.url }}" alt="{{ item.title }}"> -->
+        <!-- </div> -->
+
+        <!-- </div> -->
+        <!-- Card -->
+        <div class="card card-cascade wider reverse">
+
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+                <img class="card-img-top" src="{{ wallpaper.image.url }}" alt="{{ wallpaper.title }}">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <!-- Title -->
+                <h4 class="card-title"><strong>{{wallpaper.title|title}}</strong></h4>
+                <hr>
+                {% if user.is_authenticated %}
+                <!-- Downloads -->
+                <a id='download-link' class="px-2 fa-lg li-ic" download="{{ wallpaper.slug|add:'-wallpaper-com.jpg' }}"
+                    href="{{ wallpaper.image.url }}"><i class="fa fa-download"></i>
+                </a>
+
+                <span>{{wallpaper.downloads}}</span>
+                <!-- Views -->
+                <a class="px-2 fa-lg tw-ic"><i class="fa fa-eye"></i></a>
+                <span>{{wallpaper.views}}</span>
+                <!-- Like -->
+                <a class="px-2 fa-lg fb-ic" id='likes-link'><i class="fa fa-heart-o"></i></a>
+                <span>{{wallpaper.likes}}</span>
+                <h6 class="pt-2">
+                    {{wallpaper.image.height}} x {{wallpaper.image.width}}
+                </h6>
+                {% else %}
+                <a class="px-2 fa-lg li-ic"><i class="fa fa-download"></i></a>
+                <span>{{wallpaper.downloads}}</span>
+                <!-- Views -->
+                <a class="px-2 fa-lg tw-ic"><i class="fa fa-eye"></i></a>
+                <span>{{wallpaper.views}}</span>
+                <!-- Like -->
+                <a class="px-2 fa-lg fb-ic"><i class="fa fa-heart-o"></i></a>
+                <span>{{wallpaper.likes}}</span>
+                <!-- Login to download -->
+                <h6 class="pt-2">
+                    <a class="cyan-text" href="{% url 'login' %}">Login to download and like the wallpaper</a>
+                </h6>
+                {% endif%}
+
+                <!-- Tags -->
+
+                {% if wallpaper.tags != '' %}
+
+
+
+                {% for tag in wallpaper.get_tags %}
+                <div class="chip chip-lg purple-gradient white-text">
+                    <a class="white-text" href="{% url 'tag' tag%}">{{ tag }}</a>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <!-- Subtitle -->
+                <h6 class="font-weight-bold indigo-text py-2 pt-3">{{ wallpaper.category}}</h6>
+                <!-- Location -->
+                {% if wallpaper.location %}
+                <h5> <i class="fa fa-map-marker"></i> {{ wallpaper.location}}</h5>
+                {% endif %}
+
+                <!-- Text -->
+                <p class="card-text">{{wallpaper.description}}
+                </p>
+                <hr>
+                <!-- Linkedin -->
+                <a class="px-2 fa-lg li-ic"><i class="fa fa-linkedin"></i></a>
+                <!-- Twitter -->
+                <a class="px-2 fa-lg tw-ic"><i class="fa fa-twitter"></i></a>
+                <!-- Dribbble -->
+                <a class="px-2 fa-lg fb-ic"><i class="fa fa-facebook"></i></a>
+
+            </div>
+
+        </div>
+        <!-- Card -->
+
+    </section>
+    <script>
+            var form_download = document.getElementById("download");
+
+            document.getElementById("download-link").addEventListener("click", function () {
+                form_download.submit();
+            });
+
+            var form_like = document.getElementById("like");
+
+            document.getElementById("likes-link").addEventListener("click", function () {
+                form_like.submit();
+            });
+        </script>
+
+</div>
+{% endblock main_content %}

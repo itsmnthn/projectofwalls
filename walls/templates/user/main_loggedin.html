@@ -1,0 +1,294 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        Wallpaper
+        {% endblock title %}
+    </title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="/static/bootstrap/css/mdb.min.css" rel="stylesheet">
+    <link href="/static/css/gallary.css" rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <style>
+        *{
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body class="fixed-sn white-skin">
+
+    <!--Double navigation-->
+    <header>
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav sn-bg-4 fixed">
+            <ul class="custom-scrollbar">
+                <!-- Logo -->
+                <li>
+                    <div class="logo-wrapper waves-light">
+                        {% comment %} <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+                        {% endcomment %}
+                        <a href="{% url 'home' %}"><span class="img-fluid flex-center">Wallpaper</span></a>
+                    </div>
+                </li>
+                <!--/. Logo -->
+
+                <!--Social-->
+                {% comment %} <li>
+                    <ul class="social">
+                        <li><a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                        <li><a href="#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                        <li><a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                    </ul>
+                </li> {% endcomment %}
+                <!--/Social-->
+
+                <!--Search Form-->
+                <li>
+                    <form method="GET" class="search-form" role="search" action="/search/">
+                        <div class="form-group md-form mt-0 pt-1 waves-light">
+                            <input type="text" name="search_nav" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                </li>
+                <!--/.Search Form-->
+                <!-- Side navigation links -->
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="{% url 'home' %}">
+                                <i class="fa fa-home"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r">
+                                <i class="fa fa-th-list"></i>
+                                Categories
+                                <i class="fa fa-angle-down rotate-icon"></i></a>
+
+                            {% comment %} Category Menu list Using Angular js {% endcomment %}
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+
+                                    {% for category in categories %}
+                                    <li>
+                                        <a class="waves-effect" href="/category/{{ category.title }}">
+                                            {{ category.title }}
+                                        </a>
+                                    </li>
+
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                            {% comment %} End of the category menu list angular {% endcomment %}
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="{% url 'about' %}">
+                                <i class="fa fa-eye"></i> About
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="{% url 'contact_us' %}">
+                                <i class="fa fa-envelope-o"></i>
+                                Contact us
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+            </ul>
+            <div class="sidenav-bg mask-strong"></div>
+        </div>
+        <!--/. Sidebar navigation -->
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+                <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="fa fa-bars"></i></a>
+            </div>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-dn mr-auto">
+                <p>Home</p>
+            </div>
+
+            {% comment %} Nav Bar fix on top {% endcomment %}
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact_us' %}">
+                        <i class="fa fa-envelope"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Contact</span>
+                    </a>
+                </li>
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'profile' %}">
+                            <i class="fa fa-user"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Profile</span>
+                        </a>
+                        <a class="dropdown-item" href="{% url 'wallpaper_upload' %}">
+                            <i class="fa fa-upload"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Upload Wallpaper</span>
+                        </a>
+                        <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Logout</span>
+                        </a>
+                        <form id="logout" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <input type="hidden" />
+                        </form>
+                    </div>
+                </li>
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                        <i class="fa fa-sign-in"></i>
+                        <span class="clearfix d-none d-sm-inline-block">login</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% comment %} If dropdown needed {% endcomment %}
+                {% comment %} <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li> {% endcomment %}
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+    <!--/.Double navigation-->
+
+    <!--Main layout-->
+    <main>
+
+        {% block main_content %}
+        {% endblock main_content %}
+
+    </main>
+    <!--/Main layout-->
+    <div class="pb-3"></div>
+    <!--Footer-->
+    <footer class="page-footer text-center text-md-left pt-4">
+
+        <div class="social-section text-center">
+
+            <h5 class="text-uppercase font-weight-bold mb-4">About</h5>
+            <p>This website is a part of our study of MSc. IT & CA at Computer
+                Science Department of the Saurashtra University Rajkot. Developed by Dhaval and
+                Mnthn.</p>
+
+        </div>
+
+        <hr>
+
+        <!--Call to action-->
+        {% if user.is_authenticated %}
+        {% else %}
+        <div class="call-to-action text-center my-4">
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item"><a href="{% url 'login' %}" class="btn btn-primary">Log in!</a></li>
+                <li class="list-inline-item"><a href="{% url 'signup' %}" class="btn btn-secondary">Sign up!</a></li>
+            </ul>
+        </div>
+        {%endif%}
+        <!--/.Call to action-->
+
+        {% comment %}
+        <hr> {% endcomment %}
+
+        <!--Social buttons-->
+        <div class="social-section text-center">
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item"><a class="btn-floating btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                <li class="list-inline-item"><a class="btn-floating btn-tw"><i class="fa fa-twitter"> </i></a></li>
+                <li class="list-inline-item"><a class="btn-floating btn-gplus"><i class="fa fa-google-plus"> </i></a></li>
+                <li class="list-inline-item"><a class="btn-floating btn-li"><i class="fa fa-linkedin"> </i></a></li>
+                <li class="list-inline-item"><a class="btn-floating btn-git"><i class="fa fa-github"> </i></a></li>
+            </ul>
+        </div>
+        <!--/.Social buttons-->
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid">
+                © 2018 Copyright: <a href=""> wallpaper.com </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="/static/bootstrap/js/jquery-3.3.1.min.js"></script>
+
+    <!-- Tooltips -->
+    <script type="text/javascript" src="/static/bootstrap/js/popper.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/static/bootstrap/js/mdb.min.js"></script>
+    <script>
+
+        // SideNav Initialization
+        $(".button-collapse").sideNav();
+
+        new WOW().init();
+
+    </script>
+
+    <!-- Angular js script -->
+    <script src="/static/angular/angular.min.js"></script>
+    <!-- menu list -->
+
+    {% comment %}
+    <script>
+        $(function () {
+            $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+        });
+    </script> {% endcomment %}
+
+</body>
+
+</html>

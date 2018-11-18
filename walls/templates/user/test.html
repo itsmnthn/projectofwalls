@@ -1,0 +1,22 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Test
+{% endblock title %}
+
+
+
+{% block main_content %}
+<!-- Login page will have email and password and login button in center and below
+Sign in button there is line not registered yet then click here! where here has link to register
+-->
+
+
+<div class="container ">
+    <h1>Session</h1>
+    <h3>{{ data.usernm }}</h3>
+    <h3>{{ data.password }}</h3>
+
+</div>
+{% endblock main_content %}

@@ -1,0 +1,72 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Wallpaper
+{% endblock title %}
+
+
+
+{% block main_content %}
+<div class="container">
+    <section>
+        <!-- Title -->
+        <h4 class="card-title"><strong><i class="fa fa-upload"> </i> Upload the Wallpaper</strong></h4>
+        <hr>
+        {% if user.is_authenticated %}
+
+        <form action="/wallpaper/upload" method="POST" id="upload_wall" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if error %}
+            <p class="text-center" style="color: crimson">{{ error }}</p>
+            {% endif %}
+            <input type="hidden" value="{{user}}" name='uploader' />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name='title' placeholder="Wallpaper name"
+                        required />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="image">Wallpaper</label>
+                    <input type="file" class="form-control-file" id="image" name='wallpaper' required />
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="form-group col-md-6">
+                    <label for="location">Category</label>
+                    <select name='category' class="browser-default custom-select form-control" required>
+                        <option value selected>Select category</option>
+                        {% for category in categories %}
+                        <option value="{{category}}">{{category}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Place, Country ...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Descriptions</label>
+                <textarea class="form-control" id="description" name="description" placeholder="More details about the wallpaper like what do walpaper says and etc."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tags">tags</label>
+                <textarea class="form-control" id="tags" name="tags" placeholder="Tags of the wallpaper separated by comm(,)"
+                    required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        {% else %}
+        <h6 class="pt-2">
+            <a class="cyan-text" href="{% url 'login' %}">Please first login to upload wallpaper</a>
+        </h6>
+        {% endif%}
+
+
+    </section>
+</div>
+{% endblock main_content %}

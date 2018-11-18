@@ -1,0 +1,65 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+
+
+{% block main_content %}
+<div class="logg container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading col-md-12" style="background-color:#d3c7b8; padding: 10px;">
+                    <div class="col-md-6">
+                        <h2 class=""><span class="fa fa-lock f1"> Register</span></h2>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 10px">
+                    <form class="form" method="POST" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        {% if error %}
+                        <p class="text-center" style="color: crimson">{{ error }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="fa fa-user" for="first_name"> First Name</label>
+                            <input type="text" name="first_name" class="form-control" placeholder="Dhaval" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fa fa-user" for="last_name"> Last Name</label>
+                            <input type="text" name="last_name" class="form-control" placeholder="Purohit" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fa fa-user" for="username"> Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="dp1997" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fa fa-envelope" for="email"> Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="someone@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fa fa-key" for="password"> Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="********" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fa fa-key" for="confirm_password"> Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" placeholder="********"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-block btn-default" class="form-control">Register </button>
+                            <div class="text-center">
+                                <p class="reg">Already a member?<a href="{% url 'login' %}"> Login </a></p>
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main_content %}

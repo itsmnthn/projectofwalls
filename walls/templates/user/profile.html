@@ -1,0 +1,41 @@
+{% extends "user/main_loggedin.html" %}
+{% comment %} {% extends "user/main_loggedin.html" %} {% endcomment %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+
+
+{% block main_content %}
+<div class="container">
+    <section>
+        <!-- Row Title-->
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h2>{{ user }}</h2>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <a href="{% url 'wallpaper_upload' %}" class="btn btn-default">Upload Wallpaper</a>
+            </div>
+        </div>
+        <!-- Row Title-->
+        <hr>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>Your wallpapers</h3>
+            </div>
+        </div>
+        <!-- Grid row -->
+        <div class="gallery" id="gallery">
+            {% for item in wallpapers %}
+            <!-- Grid column -->
+            <div class="mb-3 pics animation">
+                <img class="img-fluid" src="{{ item.image.url }}" alt="{{ item.title }}">
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock main_content %}
