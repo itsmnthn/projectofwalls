@@ -59,9 +59,9 @@ Wallpaper
                 <!-- Downloads -->
                 <a id='download-link' class="px-2 fa-lg li-ic" download="{{ wallpaper.slug|add:'-wallpaper-com.jpg' }}"
                     href="{{ wallpaper.image.url }}"><i class="fa fa-download"></i>
+                    <span>{{wallpaper.downloads}}</span>
                 </a>
 
-                <span>{{wallpaper.downloads}}</span>
                 <!-- Views -->
                 <a class="px-2 fa-lg tw-ic"><i class="fa fa-eye"></i></a>
                 <span>{{wallpaper.views}}</span>

@@ -19,10 +19,10 @@
             {% for item in wallpapers %}
             <!-- Grid column -->
             <div class="mb-4 pics animation">
-                    <a href="{% url 'wallpaper' item.category item.slug %}">
-                        <img class="img-fluid" src="{{ item.image.url }}" alt="{{ item.title }}">
-                    </a>
-                </div>
+                <a href="{% url 'wallpaper' item.category item.slug %}">
+                    <img class="img-fluid" src="{{ item.image.url }}" alt="{{ item.title }}" />
+                </a>
+            </div>
             <!-- Grid column -->
             {% endfor %}
         </div>

@@ -13,7 +13,7 @@ Profile
         <!-- Row Title-->
         <div class="row">
             <div class="col-md-6 text-center">
-                <h2>{{ user.get_name }}</h2>
+                <h2>{{ user.username }}</h2>
             </div>
 
             <div class="col-md-6 text-center">
@@ -31,8 +31,11 @@ Profile
         <div class="gallery" id="gallery">
             {% for item in wallpapers %}
             <!-- Grid column -->
-            <div class="mb-3 pics animation">
-                <img class="img-fluid" src="{{ item.image.url }}" alt="{{ item.title }}">
+            
+            <div class="mb-4 pics animation">
+                <a href="{% url 'wallpaper' item.category item.slug %}">
+                    <img class="img-fluid" src="{{ item.image.url }}" alt="{{ item.title }}" />
+                </a>
             </div>
             {% endfor %}
         </div>
